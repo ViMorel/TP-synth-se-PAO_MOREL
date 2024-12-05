@@ -8,15 +8,29 @@ int main() {
     write(STDOUT_FILENO, welcome_msg, strnlen(welcome_msg, BUFFER_SIZE));
 
     while(1){
+    
     	write(STDOUT_FILENO, prompt_msg, strnlen(prompt_msg, BUFFER_SIZE));
+    	
     	ssize_t input_read = read(STDIN_FILENO, input, BUFFER_SIZE-1);
+    	
     	input[input_read-1]='\0';
+    	
     	if(strncmp(input,"exit",4)==0){
     		write(STDOUT_FILENO,"bye bye\n",strnlen("bye bye \n",BUFFER_SIZE));
     	}
     	
-    	if(strncmp(input,"ls",2)==0){
-    		write(STDOUT_FILENO,"bye bye\n",strnlen("bye bye \n",BUFFER_SIZE));
+    	pid_t pid = fork();
+    	
+    	if(pid==0){
+    	    	
+    		if(strncmp(input,"fortune",7)==0){
+    			char *arg[]={"/usr/games/fortune", NULL};
+    			execvp(arg[0], arg);
+    			exit(1);
+    		}
     	}
+    	else if (pid>0){
+    		wait(NULL);
+    		}
     }
 }
