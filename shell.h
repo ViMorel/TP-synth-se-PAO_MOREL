@@ -1,7 +1,8 @@
-#include <unistd.h>  // for functions read, write
-#include <string.h>  // for functions strncmp, strnlen
-#include <stdlib.h> // for function exit
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 
 #define BUFFER_SIZE 128
-
