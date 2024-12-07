@@ -58,7 +58,7 @@ while(1){
     		int status;
     		wait(&status);
     		
-    		//time calcul
+    		//time calculation
                 clock_gettime(CLOCK_MONOTONIC,&end);
                 fct_time=end.tv_nsec - start.tv_nsec;
     		
